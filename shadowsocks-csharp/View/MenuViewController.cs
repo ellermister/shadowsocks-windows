@@ -55,6 +55,7 @@ namespace Shadowsocks.View
         private MenuItem hotKeyItem;
         private MenuItem VerboseLoggingToggleItem;
         private ConfigForm configForm;
+        private SubscribeForm subscribeForm;
         private ProxyForm proxyForm;
         private LogForm logForm;
         private HotkeySettingsForm hotkeySettingsForm;
@@ -274,7 +275,8 @@ namespace Shadowsocks.View
                     new MenuItem("-"),
                     CreateMenuItem("Share Server Config...", new EventHandler(this.QRCodeItem_Click)),
                     CreateMenuItem("Scan QRCode from Screen...", new EventHandler(this.ScanQRCodeItem_Click)),
-                    CreateMenuItem("Import URL from Clipboard...", new EventHandler(this.ImportURLItem_Click))
+                    CreateMenuItem("Import URL from Clipboard...", new EventHandler(this.ImportURLItem_Click)),
+                    CreateMenuItem("Import Subscribe URL...", new EventHandler(this.ImportSubscribeURLItem_Click))
                 }),
                 CreateMenuGroup("PAC ", new MenuItem[] {
                     this.localPACItem = CreateMenuItem("Local PAC", new EventHandler(this.LocalPACItem_Click)),
@@ -303,6 +305,7 @@ namespace Shadowsocks.View
                         this.checkPreReleaseToggleItem = CreateMenuItem("Check Pre-release Version", new EventHandler(this.checkPreReleaseToggleItem_Click)),
                     }),
                     CreateMenuItem("About...", new EventHandler(this.AboutItem_Click)),
+                    CreateMenuItem("Version...", new EventHandler(this.AboutItem_Click)),
                 }),
                 new MenuItem("-"),
                 CreateMenuItem("Quit", new EventHandler(this.Quit_Click))
@@ -474,6 +477,20 @@ namespace Shadowsocks.View
             }
         }
 
+        private void ShowSubscribeForm()
+        {
+            if (subscribeForm != null)
+            {
+                subscribeForm.Activate();
+            }
+            else
+            {
+                subscribeForm = new SubscribeForm(controller);
+                subscribeForm.Show();
+                subscribeForm.Activate();
+                //subscribeForm.FormClosed += configForm_FormClosed;
+            }
+        }
         private void ShowProxyForm()
         {
             if (proxyForm != null)
@@ -760,6 +777,11 @@ namespace Shadowsocks.View
             {
                 ShowConfigForm();
             }
+        }
+
+        private void ImportSubscribeURLItem_Click(object sender, EventArgs e)
+        {
+            ShowSubscribeForm();
         }
 
         void splash_FormClosed(object sender, FormClosedEventArgs e)

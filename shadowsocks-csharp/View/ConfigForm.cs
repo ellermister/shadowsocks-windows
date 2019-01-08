@@ -362,5 +362,10 @@ namespace Shadowsocks.View
         {
             this.PasswordTextBox.UseSystemPasswordChar = !this.ShowPasswdCheckBox.Checked;
         }
+
+        private void EncryptionSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
