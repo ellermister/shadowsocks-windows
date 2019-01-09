@@ -28,6 +28,7 @@ namespace Shadowsocks.Model
         public string plugin_opts;
         public string plugin_args;
         public string remarks;
+        public string groups;
         public int timeout;
 
         public override int GetHashCode()
@@ -76,6 +77,7 @@ namespace Shadowsocks.Model
             plugin_args = "";
             password = "";
             remarks = "";
+            groups = "";
             timeout = DefaultServerTimeoutSec;
         }
 

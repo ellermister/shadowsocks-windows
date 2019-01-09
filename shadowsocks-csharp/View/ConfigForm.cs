@@ -117,6 +117,7 @@ namespace Shadowsocks.View
             server.plugin_opts = PluginOptionsTextBox.Text;
             server.plugin_args = PluginArgumentsTextBox.Text;
             server.remarks = RemarksTextBox.Text;
+            server.groups = GroupsTextBox.Text;
             if (!int.TryParse(TimeoutTextBox.Text, out server.timeout))
             {
                 MessageBox.Show(I18N.GetString("Illegal timeout format"));
@@ -146,6 +147,7 @@ namespace Shadowsocks.View
             PluginArgumentsTextBox.Text = server.plugin_args;
             RemarksTextBox.Text = server.remarks;
             TimeoutTextBox.Text = server.timeout.ToString();
+            GroupsTextBox.Text = server.groups.ToString();
         }
 
         private void LoadServerNameListToUI(Configuration configuration)
@@ -367,5 +369,6 @@ namespace Shadowsocks.View
         {
 
         }
+
     }
 }
