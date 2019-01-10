@@ -33,6 +33,7 @@ namespace Shadowsocks.Model
         public LogViewerConfig logViewer;
         public ProxyConfig proxy;
         public HotkeyConfig hotkey;
+        public List<SubscribeConfig> subscribe;
 
         private static string CONFIG_FILE = "gui-config.json";
 
@@ -74,6 +75,8 @@ namespace Shadowsocks.Model
                     config.proxy = new ProxyConfig();
                 if (config.hotkey == null)
                     config.hotkey = new HotkeyConfig();
+                if (config.subscribe == null)
+                    config.subscribe = new List<SubscribeConfig>();
 
                 config.proxy.CheckConfig();
 

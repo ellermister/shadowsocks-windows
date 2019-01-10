@@ -621,6 +621,62 @@ namespace Shadowsocks.Controller
             Clipboard.SetDataObject(_pacServer.PacUrl);
         }
 
+        public string Base64UrlEncode(string text)
+        {
+            text = Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
+            text = text.Replace("+", "-").Replace("/", "_").TrimEnd('=');
+            return text;
+        }
+
+        public string Base64UrlDecode(string base64)
+        {
+            base64 = base64.Replace("-", "+").Replace("_", "/");
+            return Encoding.UTF8.GetString(Convert.FromBase64String(
+                        base64.PadRight(base64.Length + (4 - base64.Length % 4) % 4, '=')));
+        }
+
+        public void AddSubscribe(string title, string url)
+        {
+            bool isMatch = false;
+            foreach (var item in _config.subscribe)
+            {
+                if (item.url == url)
+                {
+                    var index = _config.subscribe.IndexOf(item);
+                    _config.subscribe[index].title = title;
+                    isMatch = true;
+                    break;
+                }
+            }
+
+            if (!isMatch)
+            {
+                SubscribeConfig subscribe = new SubscribeConfig();
+                subscribe.title = title;
+                subscribe.url = url;
+                _config.subscribe.Add(subscribe);
+            }
+            Configuration.Save(_config);
+        }
+
+        public List<SubscribeConfig> ListSubscribe()
+        {
+            List<SubscribeConfig> list = new List<SubscribeConfig>();
+            foreach (var item in _config.subscribe)
+            {
+                var buf = new SubscribeConfig();
+                buf.title = item.title;
+                buf.url = item.url;
+                list.Add(buf);
+            }
+            return list;
+        }
+
+        public void GetSubscribe()
+        {
+
+        }
+
         #region Memory Management
 
         private void StartReleasingMemory()

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.SubscribeListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textUrl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,14 +39,14 @@
             this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // SubscribeListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(417, 292);
-            this.listBox1.TabIndex = 0;
+            this.SubscribeListBox.FormattingEnabled = true;
+            this.SubscribeListBox.ItemHeight = 16;
+            this.SubscribeListBox.Location = new System.Drawing.Point(12, 12);
+            this.SubscribeListBox.Name = "SubscribeListBox";
+            this.SubscribeListBox.Size = new System.Drawing.Size(417, 292);
+            this.SubscribeListBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -63,7 +63,6 @@
             this.textUrl.Name = "textUrl";
             this.textUrl.Size = new System.Drawing.Size(295, 22);
             this.textUrl.TabIndex = 2;
-            this.textUrl.Text = "http://www.xfservice.com/api/ssr/rss/yGevfYbNIJFE7Chd6Q5GGkjO09Zr01kl/2";
             // 
             // label2
             // 
@@ -131,9 +130,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textUrl);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.SubscribeListBox);
             this.Name = "SubscribeForm";
             this.Text = "SubscribeForm";
+            this.Load += new System.EventHandler(this.SubscribeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,7 +141,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox SubscribeListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textUrl;
         private System.Windows.Forms.Label label2;
