@@ -47,6 +47,7 @@
             this.SubscribeListBox.Name = "SubscribeListBox";
             this.SubscribeListBox.Size = new System.Drawing.Size(417, 292);
             this.SubscribeListBox.TabIndex = 0;
+            this.SubscribeListBox.SelectedIndexChanged += new System.EventHandler(this.SubscribeListBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -63,6 +64,7 @@
             this.textUrl.Name = "textUrl";
             this.textUrl.Size = new System.Drawing.Size(295, 22);
             this.textUrl.TabIndex = 2;
+            this.textUrl.TextChanged += new System.EventHandler(this.textUrl_TextChanged);
             // 
             // label2
             // 
@@ -79,6 +81,7 @@
             this.textGroup.Name = "textGroup";
             this.textGroup.Size = new System.Drawing.Size(295, 22);
             this.textGroup.TabIndex = 4;
+            this.textGroup.TextChanged += new System.EventHandler(this.textGroup_TextChanged);
             // 
             // button1
             // 
@@ -98,6 +101,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -107,6 +111,7 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -116,6 +121,7 @@
             this.button4.TabIndex = 8;
             this.button4.Text = "Add";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // SubscribeForm
             // 

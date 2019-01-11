@@ -17,6 +17,8 @@ using Shadowsocks.Util;
 using System.Linq;
 using Shadowsocks.Controller.Service;
 using Shadowsocks.Proxy;
+using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace Shadowsocks.Controller
 {
@@ -78,6 +80,8 @@ namespace Shadowsocks.Controller
         public event ErrorEventHandler UpdatePACFromGFWListError;
 
         public event ErrorEventHandler Errored;
+
+        public static bool isUpdateSubscribe; 
 
         public ShadowsocksController()
         {
@@ -212,6 +216,56 @@ namespace Shadowsocks.Controller
             {
                 Logging.LogUsefulException(e);
                 return false;
+            }
+        }
+
+        public bool AddServer(Server server)
+        {
+            try
+            {
+                if (server == null) return false;
+
+                int configIndex = -1;
+                foreach(var bufServer in _config.configs)
+                {
+                    if(server.groups == bufServer.groups && server.remarks == bufServer.remarks)
+                    {
+                        configIndex = _config.configs.IndexOf(bufServer);
+                    }
+                }
+
+                if(configIndex != -1)
+                {
+                    _config.configs[configIndex] = server;
+                }else
+                {
+                    _config.configs.Add(server);
+                    _config.index = _config.configs.Count - 1;
+                }
+                SaveConfig(_config);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logging.LogUsefulException(e);
+                return false;
+            }
+        }
+
+        public void AddServerByGroup(List<Server> servers, List<string> groupName)
+        {
+            List<Server> copyConfig = new List<Server>(_config.configs.ToArray());
+            foreach (var server in copyConfig)
+            {
+
+                if(groupName.IndexOf(server.groups) != -1)
+                {
+                    _config.configs.Remove(server);
+                }
+            }
+            foreach(var server in servers)
+            {
+                _config.configs.Add(server);
             }
         }
 
@@ -631,8 +685,14 @@ namespace Shadowsocks.Controller
         public string Base64UrlDecode(string base64)
         {
             base64 = base64.Replace("-", "+").Replace("_", "/");
-            return Encoding.UTF8.GetString(Convert.FromBase64String(
-                        base64.PadRight(base64.Length + (4 - base64.Length % 4) % 4, '=')));
+            try
+            {
+                return Encoding.UTF8.GetString(Convert.FromBase64String(
+                            base64.PadRight(base64.Length + (4 - base64.Length % 4) % 4, '=')));
+            }catch
+            {
+                return "";
+            }
         }
 
         public void AddSubscribe(string title, string url)
@@ -659,6 +719,11 @@ namespace Shadowsocks.Controller
             Configuration.Save(_config);
         }
 
+        public void ClearSubscribe()
+        {
+            _config.subscribe = new List<SubscribeConfig>();
+        }
+
         public List<SubscribeConfig> ListSubscribe()
         {
             List<SubscribeConfig> list = new List<SubscribeConfig>();
@@ -672,9 +737,151 @@ namespace Shadowsocks.Controller
             return list;
         }
 
-        public void GetSubscribe()
+        public SubscribeConfig GetSubscribe(int index)
         {
+            List<SubscribeConfig> list = new List<SubscribeConfig>();
+            SubscribeConfig Subscribe = null;
+            
+            if(_config.subscribe.Count -1 >= index)
+            {
+                Subscribe = _config.subscribe[index];
+            }
+            return Subscribe;
+        }
 
+        public void UpdateSubscribe()
+        {
+            if (isUpdateSubscribe)
+            {
+                MessageBox.Show("正在更新中...");
+                return;
+            }
+            Thread updateThread = new Thread(EventUpdateSubscribe);
+            updateThread.Start();
+        }
+
+        private void EventUpdateSubscribe()
+        {
+            isUpdateSubscribe = true;
+            List<Server> serverList = new List<Server>();
+            List<string> groupsName = new List<string>();
+            foreach (var item in _config.subscribe)
+            {
+                string groupName = null;
+                var bufList = ParseSubscribeUrl(item.url, out groupName);
+                if(bufList != null && groupName != null)
+                {
+                    groupsName.Add(groupName);
+                    serverList.AddRange(bufList);
+                }
+                    
+            }
+
+            AddServerByGroup(serverList, groupsName);
+            isUpdateSubscribe = false;
+
+        }
+
+        private List<Server> ParseSubscribeUrl(string url, out string groupName)
+        {
+            byte[] pageData = null;
+            byte[] originString = null;
+            groupName = null;
+            WebClient webClient = new WebClient();
+            webClient.Credentials = CredentialCache.DefaultCredentials;
+            Regex
+            UrlFinder = new Regex(@"ss://(?<base64>[A-Za-z0-9+-/=_]+)(?:#(?<tag>\S+))?", RegexOptions.IgnoreCase),
+            DetailsParser = new Regex(@"^((?<method>.+?):(?<password>.*)@(?<hostname>.+?):(?<port>\d+?))$", RegexOptions.IgnoreCase),
+            DetailsParserR = new Regex(@"^((?<hostname>.+?):(?<port>\d+?):(?<protocol>.+?):(?<method>.+?):plain:(?<password>.*))/$", RegexOptions.IgnoreCase),
+            UrlFinderR = new Regex(@"ssr://(?<base64>[\S]+)[\r\s]?", RegexOptions.IgnoreCase),
+            GroupFinder = new Regex(@"group=(?<base64>[A-Za-z0-9+-/=_]+)&?", RegexOptions.IgnoreCase);
+
+            try
+            {
+                pageData = webClient.DownloadData(url);
+                string pageHtml = Encoding.Default.GetString(pageData);
+                if (pageHtml == "")
+                {
+                    return null;
+                }
+                originString = Convert.FromBase64String(pageHtml);
+            }
+            catch
+            {
+                return null;
+            }
+            MessageBox.Show("开始处理一个订阅地址");
+
+            //ssUrl = "ss://" or " ssr://"
+            string ssUrl = Encoding.UTF8.GetString(originString);
+
+            List<Server> serverList = new List<Server>();
+            if (UrlFinderR.IsMatch(ssUrl))
+            {
+                MatchCollection matches = UrlFinderR.Matches(ssUrl);
+
+                for (var index = 0; index < matches.Count; index++)
+                {
+                    var bufMatch = matches[index];
+
+                    Dictionary<string, string> linkInfo = new Dictionary<string, string>();
+                    var ssrLink = Base64UrlDecode(bufMatch.Groups["base64"].Value);
+
+                    string[] linkBuf = ssrLink.Split('?');
+                    string mainData = "";
+                    string queryData = "";
+                    if (linkBuf.Length == 2)
+                    {
+                        mainData = linkBuf[0];
+                        queryData = linkBuf[1];
+                    }
+
+                    var mainDataParam = DetailsParserR.Match(mainData);
+                    if (mainDataParam.Success)
+                    {
+                        var partArray = Regex.Split(queryData, "&", RegexOptions.IgnoreCase);
+                        foreach (var item in partArray)
+                        {
+                            var valueArray = item.Split('=');
+                            if (valueArray.Length == 2)
+                            {
+                                linkInfo[valueArray[0]] = valueArray[1];
+                            }
+                        }
+
+                        Server server = new Server();
+                        server.server = mainDataParam.Groups["hostname"].Value;
+                        server.server_port = int.Parse(mainDataParam.Groups["port"].Value);
+                        server.method = mainDataParam.Groups["method"].Value;
+                        server.password = Base64UrlDecode(mainDataParam.Groups["password"].Value);
+                        server.remarks = Base64UrlDecode(linkInfo["remarks"]);
+                        server.groups = Base64UrlDecode(linkInfo["group"]);
+                        groupName = server.groups;
+                        serverList.Add(server);
+                    }
+                }
+
+                return serverList;
+            }
+
+            MessageBox.Show("处理完成一个订阅地址");
+
+            //parse ss
+            var match = UrlFinder.Match(ssUrl);
+            if (match.Success)
+            {
+                var bufServerList = Server.GetServers(ssUrl);
+                if(bufServerList != null)
+                {
+                    foreach(var server in bufServerList)
+                    {
+                        serverList.Add(server);
+                        groupName = server.groups;
+                    }
+                }
+            }
+
+            return serverList;
         }
 
         #region Memory Management

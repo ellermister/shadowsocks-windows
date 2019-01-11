@@ -14,6 +14,7 @@ using Shadowsocks.Model;
 using Shadowsocks.Properties;
 using Shadowsocks.Util;
 using System.Linq;
+using System.Threading;
 
 namespace Shadowsocks.View
 {
@@ -275,8 +276,11 @@ namespace Shadowsocks.View
                     new MenuItem("-"),
                     CreateMenuItem("Share Server Config...", new EventHandler(this.QRCodeItem_Click)),
                     CreateMenuItem("Scan QRCode from Screen...", new EventHandler(this.ScanQRCodeItem_Click)),
-                    CreateMenuItem("Import URL from Clipboard...", new EventHandler(this.ImportURLItem_Click)),
-                    CreateMenuItem("Import Subscribe URL...", new EventHandler(this.ImportSubscribeURLItem_Click))
+                    CreateMenuItem("Import URL from Clipboard...", new EventHandler(this.ImportURLItem_Click))                    
+                }),
+                CreateMenuGroup("Subscribe ", new MenuItem[] {
+                    CreateMenuItem("Import Subscribe URL...", new EventHandler(this.ImportSubscribeURLItem_Click)),
+                    CreateMenuItem("Update Subscribe...", new EventHandler(this.UpdateSubscribeItem_Click))
                 }),
                 CreateMenuGroup("PAC ", new MenuItem[] {
                     this.localPACItem = CreateMenuItem("Local PAC", new EventHandler(this.LocalPACItem_Click)),
@@ -443,23 +447,84 @@ namespace Shadowsocks.View
             items.Add( i++, new MenuItem("-") );
 
             int strategyCount = i;
+            List<ServerGroup> serverGroupList = new List<ServerGroup>();
             Configuration configuration = controller.GetConfigurationCopy();
             foreach (var server in configuration.configs)
             {
-                MenuItem item = new MenuItem(server.FriendlyName());
-                item.Tag = i - strategyCount;
-                item.Click += AServerItem_Click;
-                items.Add(i, item);
-                i++;
-            }
-
-            foreach (MenuItem item in items)
-            {
-                if (item.Tag != null && (item.Tag.ToString() == configuration.index.ToString() || item.Tag.ToString() == configuration.strategy))
+                var isMatch = false;
+                foreach(var groups in serverGroupList)
                 {
-                    item.Checked = true;
+                    if(groups.name == server.groups)
+                    {
+                        var index = serverGroupList.IndexOf(groups);
+                        serverGroupList[index].serverList.Add(server);
+                        isMatch = true;
+                        break;
+                    }
+                }
+                if (!isMatch)
+                {
+                    var bufServerGroup = new ServerGroup();
+                    bufServerGroup.name = server.groups;
+                    bufServerGroup.serverList.Add(server);
+                    serverGroupList.Add(bufServerGroup);
                 }
             }
+
+            //create server group menus.
+            var groupIndex = i;
+            foreach (var serverGroup in serverGroupList)
+            {
+                List<MenuItem> bufItems = new List<MenuItem>();
+
+                foreach (var server in serverGroup.serverList)
+                {
+                    MenuItem item = new MenuItem(server.FriendlyName());
+                    item.Tag = i - strategyCount;
+                    item.Click += AServerItem_Click;
+                    i++;
+                    bufItems.Add(item);
+                }
+
+                var bufMenuGroup = CreateMenuGroup(serverGroup.name, bufItems.ToArray());
+                items.Add(groupIndex, bufMenuGroup);
+            }
+
+            //setting current active server
+            foreach (MenuItem bufItems in items)
+            {
+                
+                foreach (MenuItem item in bufItems.MenuItems)
+                {
+                    if (item.Tag != null && (item.Tag.ToString() == configuration.index.ToString() || item.Tag.ToString() == configuration.strategy))
+                    {
+                        item.Checked = true;
+                    }
+                }
+
+                MenuItem bufItem = bufItems;
+                if (bufItem.Tag != null && (bufItem.Tag.ToString() == configuration.index.ToString() || bufItem.Tag.ToString() == configuration.strategy))
+                {
+                    bufItem.Checked = true;
+                }
+            }
+
+            //foreach (var server in configuration.configs)
+            //{
+            //    MenuItem item = new MenuItem(server.FriendlyName());
+            //    item.Tag = i - strategyCount;
+            //    item.Click += AServerItem_Click;
+            //    items.Add(i, item);
+            //    i++;
+            //}
+
+            //foreach (MenuItem item in items)
+            //{
+            //    if (item.Tag != null && (item.Tag.ToString() == configuration.index.ToString() || item.Tag.ToString() == configuration.strategy))
+            //    {
+            //        item.Checked = true;
+            //    }
+            //}
         }
 
         private void ShowConfigForm()
@@ -488,8 +553,13 @@ namespace Shadowsocks.View
                 subscribeForm = new SubscribeForm(controller);
                 subscribeForm.Show();
                 subscribeForm.Activate();
-                //subscribeForm.FormClosed += configForm_FormClosed;
+                subscribeForm.FormClosed += subscribeForm_FormClosed;
             }
+        }
+
+        private void UpdateSubscribe()
+        {
+            controller.UpdateSubscribe();
         }
         private void ShowProxyForm()
         {
@@ -547,6 +617,19 @@ namespace Shadowsocks.View
         {
             configForm.Dispose();
             configForm = null;
+            Utils.ReleaseMemory(true);
+            if (_isFirstRun)
+            {
+                CheckUpdateForFirstRun();
+                ShowFirstTimeBalloon();
+                _isFirstRun = false;
+            }
+        }
+
+        void subscribeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            subscribeForm.Dispose();
+            subscribeForm = null;
             Utils.ReleaseMemory(true);
             if (_isFirstRun)
             {
@@ -782,6 +865,11 @@ namespace Shadowsocks.View
         private void ImportSubscribeURLItem_Click(object sender, EventArgs e)
         {
             ShowSubscribeForm();
+        }
+
+        private void UpdateSubscribeItem_Click(object sender, EventArgs e)
+        {
+            UpdateSubscribe();
         }
 
         void splash_FormClosed(object sender, FormClosedEventArgs e)

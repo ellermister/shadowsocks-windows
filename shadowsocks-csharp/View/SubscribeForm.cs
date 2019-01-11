@@ -22,15 +22,131 @@ namespace Shadowsocks.View
         DetailsParser = new Regex(@"^((?<method>.+?):(?<password>.*)@(?<hostname>.+?):(?<port>\d+?))$", RegexOptions.IgnoreCase),
         UrlFinderR = new Regex(@"ssr://(?<base64>[\S]+)[\r\s]?", RegexOptions.IgnoreCase),
         GroupFinder = new Regex(@"group=(?<base64>[A-Za-z0-9+-/=_]+)&?", RegexOptions.IgnoreCase);
+        string defaultUrl = "https://raw.githubusercontent.com/breakwa11/breakwa11.github.io/master/free/freenodeplain.txt";
 
         List<SubscribeConfig> SubscribeList;
+
+        private void SubscribeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SelectedIndex = SubscribeListBox.SelectedIndex;
+            if(SelectedIndex == -1)
+            {
+                return;
+            }
+
+            SubscribeConfig subscribe = SubscribeList[SelectedIndex];
+            if (subscribe == null)
+            {
+                return;
+            }
+            textUrl.Text = subscribe.url;
+
+            textGroup.Text = subscribe.title;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string title = "";
+            SubscribeConfig subscribe = new SubscribeConfig();
+
+            textUrl.Text = defaultUrl;
+            textGroup.Text = "";
+
+            title = textGroup.Text + " - " + textUrl.Text;
+
+            subscribe.title = textGroup.Text;
+            subscribe.url = textUrl.Text;
+            SubscribeList.Add(subscribe);
+
+            SubscribeListBox.Items.Add(title);
+            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SubscribeListBox.Items.RemoveAt(SubscribeListBox.SelectedIndex);
+            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
+        }
+
+        private void textUrl_TextChanged(object sender, EventArgs e)
+        {
+            var url = textUrl.Text;
+            string title = "";
+            Byte[] pageData,originString = null;
+
+            WebClient MyWebClient = new WebClient();
+            MyWebClient.Credentials = CredentialCache.DefaultCredentials;
+            try
+            {
+                pageData = MyWebClient.DownloadData(url);
+                string pageHtml = Encoding.Default.GetString(pageData);
+                if (pageHtml == "")
+                {
+                    return;
+                }
+                originString = Convert.FromBase64String(pageHtml);
+            }
+            catch
+            {
+                return;
+            }
+  
+            string ssUrl = System.Text.Encoding.UTF8.GetString(originString);
+            var match = UrlFinderR.Match(ssUrl);
+            if (match.Success)
+            {
+                var ssrLink = controller.Base64UrlDecode(match.Groups["base64"].Value);
+                var GroupMatch = GroupFinder.Match(ssrLink);
+                if (GroupMatch.Success)
+                {
+                    title = controller.Base64UrlDecode(GroupMatch.Groups["base64"].Value);
+                    textGroup.Text = title;
+
+                    var index = SubscribeListBox.SelectedIndex;
+                    if(index != -1)
+                    {
+                        SubscribeListBox.Items.RemoveAt(index);
+                        SubscribeListBox.Items.Insert(index, title + " - " + url);
+
+                        SubscribeList[index].title = title;
+                        SubscribeList[index].url = url;
+
+                        SubscribeListBox.SelectedIndex = index;
+                    }
+
+                }
+            }
+        }
+
+        private void textGroup_TextChanged(object sender, EventArgs e)
+        {
+            string title = textGroup.Text;
+            string url = textUrl.Text;
+            var index = SubscribeListBox.SelectedIndex;
+            if (index != -1)
+            {
+                SubscribeListBox.Items.RemoveAt(index);
+                SubscribeListBox.Items.Insert(index, title + " - " + url);
+
+                SubscribeList[index].title = title;
+                SubscribeList[index].url = url;
+
+                SubscribeListBox.SelectedIndex = index;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void SubscribeForm_Load(object sender, EventArgs e)
         {
             SubscribeList = controller.ListSubscribe();
             foreach(var item in SubscribeList)
             {
-                SubscribeListBox.Items.Add(item.title);
+                string title = item.title + " - " + item.url;
+                SubscribeListBox.Items.Add(title);
             }
         }
 
@@ -42,26 +158,13 @@ namespace Shadowsocks.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var url = textUrl.Text;
-            string title = "";
-            WebClient MyWebClient = new WebClient();
-            MyWebClient.Credentials = CredentialCache.DefaultCredentials;
-            Byte[] pageData = MyWebClient.DownloadData(url);
-            string pageHtml = Encoding.Default.GetString(pageData);
-            Byte[] originString = Convert.FromBase64String(pageHtml);
-            string ssUrl = System.Text.Encoding.UTF8.GetString(originString);
-            MessageBox.Show(ssUrl);
-            var match = UrlFinderR.Match(ssUrl);
-            if (match.Success)
+            controller.ClearSubscribe();
+            foreach (var subscribe in SubscribeList)
             {
-                var ssrLink = controller.Base64UrlDecode(match.Groups["base64"].Value);
-                var GroupMatch = GroupFinder.Match(ssrLink);
-                if (GroupMatch.Success)
-                {
-                    title = controller.Base64UrlDecode(GroupMatch.Groups["base64"].Value);
-                }
+                controller.AddSubscribe(subscribe.title, subscribe.url);
             }
-            controller.AddSubscribe(title, url);
+            this.Close();
+            return;
         }
     }
 }
