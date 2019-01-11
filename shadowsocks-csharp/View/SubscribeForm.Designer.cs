@@ -28,118 +28,204 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SubscribeListBox = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.OKButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.SubscribeGroupLabel = new System.Windows.Forms.Label();
+            this.SubscribeURLLabel = new System.Windows.Forms.Label();
             this.textUrl = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textGroup = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.SubscribeListBox = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.SubscribeListBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.38739F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.61261F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(812, 341);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.OKButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CancelButton, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(406, 297);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(208, 43);
+            this.tableLayoutPanel3.TabIndex = 16;
+            // 
+            // OKButton
+            // 
+            this.OKButton.Location = new System.Drawing.Point(7, 7);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(94, 29);
+            this.OKButton.TabIndex = 15;
+            this.OKButton.Text = "Save";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(107, 7);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(94, 29);
+            this.CancelButton.TabIndex = 15;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.DeleteButton, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.AddButton, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 297);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.Padding = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(208, 43);
+            this.tableLayoutPanel4.TabIndex = 17;
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(107, 7);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(94, 29);
+            this.DeleteButton.TabIndex = 25;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(7, 7);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(94, 29);
+            this.AddButton.TabIndex = 24;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.SubscribeGroupLabel, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.SubscribeURLLabel, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.textUrl, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.textGroup, 1, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(406, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(392, 64);
+            this.tableLayoutPanel2.TabIndex = 11;
+            // 
+            // SubscribeGroupLabel
+            // 
+            this.SubscribeGroupLabel.AutoSize = true;
+            this.SubscribeGroupLabel.Location = new System.Drawing.Point(8, 32);
+            this.SubscribeGroupLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SubscribeGroupLabel.Name = "SubscribeGroupLabel";
+            this.SubscribeGroupLabel.Size = new System.Drawing.Size(55, 17);
+            this.SubscribeGroupLabel.TabIndex = 13;
+            this.SubscribeGroupLabel.Text = "Groups";
+            // 
+            // SubscribeURLLabel
+            // 
+            this.SubscribeURLLabel.AutoSize = true;
+            this.SubscribeURLLabel.Location = new System.Drawing.Point(8, 4);
+            this.SubscribeURLLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SubscribeURLLabel.Name = "SubscribeURLLabel";
+            this.SubscribeURLLabel.Size = new System.Drawing.Size(36, 17);
+            this.SubscribeURLLabel.TabIndex = 11;
+            this.SubscribeURLLabel.Text = "URL";
+            // 
+            // textUrl
+            // 
+            this.textUrl.Location = new System.Drawing.Point(70, 7);
+            this.textUrl.Name = "textUrl";
+            this.textUrl.Size = new System.Drawing.Size(315, 22);
+            this.textUrl.TabIndex = 12;
+            // 
+            // textGroup
+            // 
+            this.textGroup.Location = new System.Drawing.Point(70, 35);
+            this.textGroup.Name = "textGroup";
+            this.textGroup.Size = new System.Drawing.Size(315, 22);
+            this.textGroup.TabIndex = 14;
             // 
             // SubscribeListBox
             // 
             this.SubscribeListBox.FormattingEnabled = true;
             this.SubscribeListBox.ItemHeight = 16;
-            this.SubscribeListBox.Location = new System.Drawing.Point(12, 12);
+            this.SubscribeListBox.Location = new System.Drawing.Point(3, 3);
             this.SubscribeListBox.Name = "SubscribeListBox";
-            this.SubscribeListBox.Size = new System.Drawing.Size(417, 292);
-            this.SubscribeListBox.TabIndex = 0;
-            this.SubscribeListBox.SelectedIndexChanged += new System.EventHandler(this.SubscribeListBox_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(450, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "URL";
-            // 
-            // textUrl
-            // 
-            this.textUrl.Location = new System.Drawing.Point(510, 16);
-            this.textUrl.Name = "textUrl";
-            this.textUrl.Size = new System.Drawing.Size(295, 22);
-            this.textUrl.TabIndex = 2;
-            this.textUrl.TextChanged += new System.EventHandler(this.textUrl_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(450, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Groups";
-            // 
-            // textGroup
-            // 
-            this.textGroup.Location = new System.Drawing.Point(510, 68);
-            this.textGroup.Name = "textGroup";
-            this.textGroup.Size = new System.Drawing.Size(295, 22);
-            this.textGroup.TabIndex = 4;
-            this.textGroup.TextChanged += new System.EventHandler(this.textGroup_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(634, 323);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 28);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(728, 323);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 28);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(362, 323);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 28);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(275, 323);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(67, 28);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Add";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.SubscribeListBox.Size = new System.Drawing.Size(400, 276);
+            this.SubscribeListBox.TabIndex = 10;
             // 
             // SubscribeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 366);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textGroup);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textUrl);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.SubscribeListBox);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(850, 370);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SubscribeForm";
             this.Text = "SubscribeForm";
             this.Load += new System.EventHandler(this.SubscribeForm_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,14 +233,18 @@
 
         #endregion
 
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox SubscribeListBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label SubscribeGroupLabel;
+        private System.Windows.Forms.Label SubscribeURLLabel;
         private System.Windows.Forms.TextBox textUrl;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textGroup;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button OKButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button AddButton;
     }
 }

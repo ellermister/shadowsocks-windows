@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea27 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend27 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series53 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series54 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LogMessageTextBox = new System.Windows.Forms.TextBox();
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.FileMenuItem = new System.Windows.Forms.MenuItem();
@@ -69,7 +69,7 @@
             this.LogMessageTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogMessageTextBox.ForeColor = System.Drawing.Color.White;
             this.LogMessageTextBox.Location = new System.Drawing.Point(0, 0);
-            this.LogMessageTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogMessageTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.LogMessageTextBox.MaxLength = 2147483647;
             this.LogMessageTextBox.Multiline = true;
             this.LogMessageTextBox.Name = "LogMessageTextBox";
@@ -157,7 +157,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.TopMostCheckBox.AutoSize = true;
             this.TopMostCheckBox.Location = new System.Drawing.Point(325, 4);
-            this.TopMostCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TopMostCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.TopMostCheckBox.Name = "TopMostCheckBox";
             this.TopMostCheckBox.Size = new System.Drawing.Size(89, 34);
             this.TopMostCheckBox.TabIndex = 3;
@@ -169,7 +169,7 @@
             // 
             this.ChangeFontButton.AutoSize = true;
             this.ChangeFontButton.Location = new System.Drawing.Point(120, 4);
-            this.ChangeFontButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeFontButton.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeFontButton.Name = "ChangeFontButton";
             this.ChangeFontButton.Size = new System.Drawing.Size(94, 34);
             this.ChangeFontButton.TabIndex = 2;
@@ -181,7 +181,7 @@
             // 
             this.ClearLogsButton.AutoSize = true;
             this.ClearLogsButton.Location = new System.Drawing.Point(4, 4);
-            this.ClearLogsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClearLogsButton.Margin = new System.Windows.Forms.Padding(4);
             this.ClearLogsButton.Name = "ClearLogsButton";
             this.ClearLogsButton.Size = new System.Drawing.Size(108, 34);
             this.ClearLogsButton.TabIndex = 1;
@@ -195,7 +195,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.WrapTextCheckBox.AutoSize = true;
             this.WrapTextCheckBox.Location = new System.Drawing.Point(222, 4);
-            this.WrapTextCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WrapTextCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.WrapTextCheckBox.Name = "WrapTextCheckBox";
             this.WrapTextCheckBox.Size = new System.Drawing.Size(95, 34);
             this.WrapTextCheckBox.TabIndex = 0;
@@ -211,7 +211,7 @@
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -228,7 +228,7 @@
             this.ToolbarFlowLayoutPanel.Controls.Add(this.TopMostCheckBox);
             this.ToolbarFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ToolbarFlowLayoutPanel.Location = new System.Drawing.Point(4, 4);
-            this.ToolbarFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ToolbarFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ToolbarFlowLayoutPanel.Name = "ToolbarFlowLayoutPanel";
             this.ToolbarFlowLayoutPanel.Size = new System.Drawing.Size(472, 42);
             this.ToolbarFlowLayoutPanel.TabIndex = 2;
@@ -237,7 +237,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(4, 54);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -255,45 +255,45 @@
             // 
             // trafficChart
             // 
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.MajorGrid.Interval = 5D;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisX.Maximum = 61D;
-            chartArea1.AxisX.Minimum = 1D;
-            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisY.LabelStyle.Interval = 0D;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea1.AxisY2.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.trafficChart.ChartAreas.Add(chartArea1);
+            chartArea27.AxisX.LabelStyle.Enabled = false;
+            chartArea27.AxisX.MajorGrid.Interval = 5D;
+            chartArea27.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea27.AxisX.MajorTickMark.Enabled = false;
+            chartArea27.AxisX.Maximum = 61D;
+            chartArea27.AxisX.Minimum = 1D;
+            chartArea27.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea27.AxisY.LabelAutoFitMaxFontSize = 8;
+            chartArea27.AxisY.LabelStyle.Interval = 0D;
+            chartArea27.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea27.AxisY.MajorTickMark.Enabled = false;
+            chartArea27.AxisY2.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea27.AxisY2.Minimum = 0D;
+            chartArea27.Name = "ChartArea1";
+            this.trafficChart.ChartAreas.Add(chartArea27);
             this.trafficChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.MaximumAutoSize = 25F;
-            legend1.Name = "Legend1";
-            this.trafficChart.Legends.Add(legend1);
+            legend27.MaximumAutoSize = 25F;
+            legend27.Name = "Legend1";
+            this.trafficChart.Legends.Add(legend27);
             this.trafficChart.Location = new System.Drawing.Point(0, 0);
-            this.trafficChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trafficChart.Margin = new System.Windows.Forms.Padding(4);
             this.trafficChart.Name = "trafficChart";
             this.trafficChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Inbound";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Outbound";
-            this.trafficChart.Series.Add(series1);
-            this.trafficChart.Series.Add(series2);
+            series53.BorderWidth = 2;
+            series53.ChartArea = "ChartArea1";
+            series53.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series53.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series53.IsXValueIndexed = true;
+            series53.Legend = "Legend1";
+            series53.Name = "Inbound";
+            series54.BorderWidth = 2;
+            series54.ChartArea = "ChartArea1";
+            series54.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series54.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series54.IsXValueIndexed = true;
+            series54.Legend = "Legend1";
+            series54.Name = "Outbound";
+            this.trafficChart.Series.Add(series53);
+            this.trafficChart.Series.Add(series54);
             this.trafficChart.Size = new System.Drawing.Size(472, 50);
             this.trafficChart.TabIndex = 0;
             this.trafficChart.Text = "chart1";
@@ -304,7 +304,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(480, 201);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Menu = this.MainMenu;
             this.MinimumSize = new System.Drawing.Size(496, 238);
             this.Name = "LogForm";

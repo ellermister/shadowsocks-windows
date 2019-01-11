@@ -464,7 +464,7 @@
             this.ServerGroupBox.Size = new System.Drawing.Size(356, 384);
             this.ServerGroupBox.TabIndex = 0;
             this.ServerGroupBox.TabStop = false;
-            this.ServerGroupBox.Text = "z";
+            this.ServerGroupBox.Text = "Server";
             // 
             // ServersListBox
             // 

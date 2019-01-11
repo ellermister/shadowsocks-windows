@@ -7,6 +7,7 @@ Shadowsocks=Shadowsocks
 Enable System Proxy=启用系统代理
 Mode=系统代理模式
 PAC=PAC 模式
+Subscribe=订阅功能
 Global=全局模式
 Servers=服务器
 Edit Servers...=编辑服务器...
@@ -24,6 +25,8 @@ Copy Local PAC URL=复制本地 PAC 网址
 Share Server Config...=分享服务器配置...
 Scan QRCode from Screen...=扫描屏幕上的二维码...
 Import URL from Clipboard...=从剪贴板导入URL...
+Import Subscribe URL...=设置订阅服务器
+Update Subscribe...=更新订阅
 Availability Statistics=统计可用性
 Show Logs...=显示日志...
 Verbose Logging=详细记录日志
@@ -33,7 +36,7 @@ Check for Updates at Startup=启动时检查更新
 Check Pre-release Version=检查测试版更新
 Edit Hotkeys...=编辑快捷键...
 About...=关于...
-Version...=酸奶修改版
+Version...=酸奶升级版
 Help=帮助
 Quit=退出
 Edit Servers=编辑服务器
@@ -60,6 +63,7 @@ Portable Mode=便携模式
 Restart required=需要重新启动SS
 Remarks=备注
 Timeout(Sec)=超时(秒)
+ServerGroup=群组
 OK=确定
 Cancel=取消
 New server=未配置的服务器
@@ -99,6 +103,11 @@ QRCode and URL=二维码与 URL
 Edit Online PAC URL=编辑在线 PAC 网址
 Edit Online PAC URL...=编辑在线 PAC 网址...
 Please input PAC Url=请输入 PAC 网址
+
+#  Subscribe
+SubscribeURL=订阅URL
+SubscribeGroup=群组名
+Import Subscribe=设置导入订阅功能
 
 # HotkeySettings Form
 

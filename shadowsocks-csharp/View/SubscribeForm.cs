@@ -11,6 +11,7 @@ using Shadowsocks.Controller;
 using Shadowsocks.Model;
 using System.Net;
 using System.Text.RegularExpressions;
+using Shadowsocks.Properties;
 
 namespace Shadowsocks.View
 {
@@ -42,30 +43,6 @@ namespace Shadowsocks.View
             textUrl.Text = subscribe.url;
 
             textGroup.Text = subscribe.title;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string title = "";
-            SubscribeConfig subscribe = new SubscribeConfig();
-
-            textUrl.Text = defaultUrl;
-            textGroup.Text = "";
-
-            title = textGroup.Text + " - " + textUrl.Text;
-
-            subscribe.title = textGroup.Text;
-            subscribe.url = textUrl.Text;
-            SubscribeList.Add(subscribe);
-
-            SubscribeListBox.Items.Add(title);
-            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            SubscribeListBox.Items.RemoveAt(SubscribeListBox.SelectedIndex);
-            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
         }
 
         private void textUrl_TextChanged(object sender, EventArgs e)
@@ -135,11 +112,6 @@ namespace Shadowsocks.View
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void SubscribeForm_Load(object sender, EventArgs e)
         {
             SubscribeList = controller.ListSubscribe();
@@ -150,13 +122,36 @@ namespace Shadowsocks.View
             }
         }
 
-        public SubscribeForm(ShadowsocksController controller)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            this.controller = controller;
-            InitializeComponent();
+            this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            string title = "";
+            SubscribeConfig subscribe = new SubscribeConfig();
+
+            textUrl.Text = defaultUrl;
+            textGroup.Text = "";
+
+            title = textGroup.Text + " - " + textUrl.Text;
+
+            subscribe.title = textGroup.Text;
+            subscribe.url = textUrl.Text;
+            SubscribeList.Add(subscribe);
+
+            SubscribeListBox.Items.Add(title);
+            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            SubscribeListBox.Items.RemoveAt(SubscribeListBox.SelectedIndex);
+            SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
         {
             controller.ClearSubscribe();
             foreach (var subscribe in SubscribeList)
@@ -166,5 +161,31 @@ namespace Shadowsocks.View
             this.Close();
             return;
         }
+
+        public SubscribeForm(ShadowsocksController controller)
+        {
+            this.controller = controller;
+            this.Font = SystemFonts.MessageBoxFont;
+            InitializeComponent();
+
+            UpdateTexts();
+            this.Icon = Icon.FromHandle(Resources.ssw128.GetHicon());
+
+            
+        }
+
+        private void UpdateTexts()
+        {
+            AddButton.Text = I18N.GetString("&Add");
+            DeleteButton.Text = I18N.GetString("&Delete");
+            OKButton.Text = I18N.GetString("OK");
+            CancelButton.Text = I18N.GetString("Cancel");
+
+            SubscribeURLLabel.Text = I18N.GetString("SubscribeURL");
+            SubscribeGroupLabel.Text = I18N.GetString("SubscribeGroup");
+
+            this.Text = I18N.GetString("Import Subscribe");
+        }
+
     }
 }

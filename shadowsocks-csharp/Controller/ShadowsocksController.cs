@@ -810,7 +810,6 @@ namespace Shadowsocks.Controller
             {
                 return null;
             }
-            MessageBox.Show("开始处理一个订阅地址");
 
             //ssUrl = "ss://" or " ssr://"
             string ssUrl = Encoding.UTF8.GetString(originString);
@@ -864,7 +863,6 @@ namespace Shadowsocks.Controller
                 return serverList;
             }
 
-            MessageBox.Show("处理完成一个订阅地址");
 
             //parse ss
             var match = UrlFinder.Match(ssUrl);

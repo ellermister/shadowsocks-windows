@@ -7,6 +7,7 @@ Shadowsocks=Shadowsocks
 Enable System Proxy=啟用系統代理
 Mode=系統代理模式
 PAC=PAC 模式
+Subscribe=訂閱功能
 Global=全局模式
 Servers=伺服器
 Edit Servers...=編輯伺服器...
@@ -24,6 +25,8 @@ Copy Local PAC URL=複製本機 PAC 網址
 Share Server Config...=分享伺服器設定檔...
 Scan QRCode from Screen...=掃描螢幕上的 QR 碼...
 Import URL from Clipboard...=從剪貼簿匯入 URL...
+Import Subscribe URL...=設定訂閱伺服器
+Update Subscribe...=更新訂閱
 Availability Statistics=統計可用性
 Show Logs...=顯示記錄檔...
 Verbose Logging=詳細資訊記錄
@@ -33,7 +36,7 @@ Check for Updates at Startup=啟動時檢查更新
 Check Pre-release Version=檢查發行前版本更新
 Edit Hotkeys...=編輯快速鍵...
 About...=關於...
-Version...=酸奶修改版
+Version...=酸酸乳升級版
 Help=說明
 Quit=結束
 Edit Servers=編輯伺服器
@@ -60,6 +63,7 @@ Portable Mode=便攜模式
 Restart required=需要重新啟動SS
 Remarks=註解
 Timeout(Sec)=逾時 (秒)
+ServerGroup=群組
 OK=確定
 Cancel=取消
 New server=新伺服器
@@ -99,6 +103,11 @@ QRCode and URL=QR 碼與 URL
 Edit Online PAC URL=編輯線上 PAC 網址
 Edit Online PAC URL...=編輯線上 PAC 網址...
 Please input PAC Url=請輸入 PAC 網址
+
+#  Subscribe
+SubscribeURL=訂閱URL
+SubscribeGroup=群組名
+Import Subscribe=設定導入訂閱功能
 
 # HotkeySettings Form
 

@@ -45,6 +45,7 @@ namespace Shadowsocks.View
             AddButton.Text = I18N.GetString("&Add");
             DeleteButton.Text = I18N.GetString("&Delete");
             DuplicateButton.Text = I18N.GetString("Dupli&cate");
+            ServerGroupBox.Text = I18N.GetString("Server");
             IPLabel.Text = I18N.GetString("Server Addr");
             ServerPortLabel.Text = I18N.GetString("Server Port");
             PasswordLabel.Text = I18N.GetString("Password");
@@ -58,7 +59,7 @@ namespace Shadowsocks.View
             toolTip1.SetToolTip(this.PortableModeCheckBox, I18N.GetString("Restart required"));
             RemarksLabel.Text = I18N.GetString("Remarks");
             TimeoutLabel.Text = I18N.GetString("Timeout(Sec)");
-            ServerGroupBox.Text = I18N.GetString("Server");
+            GroupsLabel.Text= I18N.GetString("ServerGroup");
             OKButton.Text = I18N.GetString("OK");
             MyCancelButton.Text = I18N.GetString("Cancel");
             MoveUpButton.Text = I18N.GetString("Move &Up");

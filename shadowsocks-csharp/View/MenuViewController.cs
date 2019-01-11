@@ -278,7 +278,7 @@ namespace Shadowsocks.View
                     CreateMenuItem("Scan QRCode from Screen...", new EventHandler(this.ScanQRCodeItem_Click)),
                     CreateMenuItem("Import URL from Clipboard...", new EventHandler(this.ImportURLItem_Click))                    
                 }),
-                CreateMenuGroup("Subscribe ", new MenuItem[] {
+                CreateMenuGroup("Subscribe", new MenuItem[] {
                     CreateMenuItem("Import Subscribe URL...", new EventHandler(this.ImportSubscribeURLItem_Click)),
                     CreateMenuItem("Update Subscribe...", new EventHandler(this.UpdateSubscribeItem_Click))
                 }),
