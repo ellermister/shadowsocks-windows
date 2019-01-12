@@ -32,6 +32,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.OKButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.SubscribeListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.SubscribeURLLabel = new System.Windows.Forms.Label();
             this.textUrl = new System.Windows.Forms.TextBox();
             this.textGroup = new System.Windows.Forms.TextBox();
-            this.SubscribeListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -103,6 +103,16 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // SubscribeListBox
+            // 
+            this.SubscribeListBox.FormattingEnabled = true;
+            this.SubscribeListBox.ItemHeight = 16;
+            this.SubscribeListBox.Location = new System.Drawing.Point(3, 3);
+            this.SubscribeListBox.Name = "SubscribeListBox";
+            this.SubscribeListBox.Size = new System.Drawing.Size(400, 276);
+            this.SubscribeListBox.TabIndex = 10;
+            this.SubscribeListBox.SelectedIndexChanged += new System.EventHandler(this.SubscribeListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -190,6 +200,7 @@
             this.textUrl.Name = "textUrl";
             this.textUrl.Size = new System.Drawing.Size(315, 22);
             this.textUrl.TabIndex = 12;
+            this.textUrl.TextChanged += new System.EventHandler(this.textUrl_TextChanged);
             // 
             // textGroup
             // 
@@ -197,15 +208,7 @@
             this.textGroup.Name = "textGroup";
             this.textGroup.Size = new System.Drawing.Size(315, 22);
             this.textGroup.TabIndex = 14;
-            // 
-            // SubscribeListBox
-            // 
-            this.SubscribeListBox.FormattingEnabled = true;
-            this.SubscribeListBox.ItemHeight = 16;
-            this.SubscribeListBox.Location = new System.Drawing.Point(3, 3);
-            this.SubscribeListBox.Name = "SubscribeListBox";
-            this.SubscribeListBox.Size = new System.Drawing.Size(400, 276);
-            this.SubscribeListBox.TabIndex = 10;
+            this.textGroup.TextChanged += new System.EventHandler(this.textGroup_TextChanged);
             // 
             // SubscribeForm
             // 

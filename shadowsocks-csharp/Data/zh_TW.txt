@@ -107,7 +107,7 @@ Please input PAC Url=請輸入 PAC 網址
 #  Subscribe
 SubscribeURL=訂閱URL
 SubscribeGroup=群組名
-Import Subscribe=設定導入訂閱功能
+Import Subscribe=設定導入訂閱清單
 
 # HotkeySettings Form
 
@@ -158,3 +158,5 @@ Proxy handshake failed=Proxy 交握失敗
 Register hotkey failed=註冊快速鍵失敗
 Cannot parse hotkey: {0}=剖析快速鍵失敗: {0}
 Timeout is invalid, it should not exceed {0}=逾時無效，不應超過 {0}
+Update subscribe list complete=更新訂閱清單完成
+Updating Subscription List=當前處於更新訂閱中

@@ -77,7 +77,7 @@ namespace Shadowsocks.Model
             plugin_args = "";
             password = "";
             remarks = "";
-            groups = "";
+            groups = "default";
             timeout = DefaultServerTimeoutSec;
         }
 

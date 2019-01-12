@@ -267,6 +267,11 @@ namespace Shadowsocks.Controller
             {
                 _config.configs.Add(server);
             }
+            Configuration.Save(_config);
+            if(ConfigChanged != null)
+            {
+                ConfigChanged(this, new EventArgs());
+            }
         }
 
         public void ToggleEnable(bool enabled)
@@ -722,17 +727,25 @@ namespace Shadowsocks.Controller
         public void ClearSubscribe()
         {
             _config.subscribe = new List<SubscribeConfig>();
+            Configuration.Save(_config);
         }
 
         public List<SubscribeConfig> ListSubscribe()
         {
             List<SubscribeConfig> list = new List<SubscribeConfig>();
-            foreach (var item in _config.subscribe)
+            try
             {
-                var buf = new SubscribeConfig();
-                buf.title = item.title;
-                buf.url = item.url;
-                list.Add(buf);
+                foreach (var item in _config.subscribe)
+                {
+                    var buf = new SubscribeConfig();
+                    buf.title = item.title;
+                    buf.url = item.url;
+                    list.Add(buf);
+                }
+            }
+            catch
+            {
+                return list;
             }
             return list;
         }
@@ -753,7 +766,7 @@ namespace Shadowsocks.Controller
         {
             if (isUpdateSubscribe)
             {
-                MessageBox.Show("正在更新中...");
+                MessageBox.Show(I18N.GetString("Updating Subscription List"));
                 return;
             }
             Thread updateThread = new Thread(EventUpdateSubscribe);
@@ -779,7 +792,7 @@ namespace Shadowsocks.Controller
 
             AddServerByGroup(serverList, groupsName);
             isUpdateSubscribe = false;
-
+            Logging.Debug(I18N.GetString("Update subscribe list complete"));
         }
 
         private List<Server> ParseSubscribeUrl(string url, out string groupName)

@@ -147,9 +147,15 @@ namespace Shadowsocks.View
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            if(SubscribeListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            SubscribeList.RemoveAt(SubscribeListBox.SelectedIndex);
             SubscribeListBox.Items.RemoveAt(SubscribeListBox.SelectedIndex);
             SubscribeListBox.SelectedIndex = SubscribeListBox.Items.Count - 1;
         }
+
 
         private void OKButton_Click(object sender, EventArgs e)
         {
